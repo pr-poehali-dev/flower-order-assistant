@@ -13,6 +13,7 @@ interface BouquetConstructorProps {
   onAiPromptChange: (value: string) => void;
   onGenerate: () => void;
   generatedImage: string;
+  isGenerating: boolean;
   onAddToCart: (item: { id: number; name: string; price: number }) => void;
   onOpenCart: () => void;
 }
@@ -25,6 +26,7 @@ const BouquetConstructor = ({
   onAiPromptChange,
   onGenerate,
   generatedImage,
+  isGenerating,
   onAddToCart,
   onOpenCart
 }: BouquetConstructorProps) => {
@@ -70,12 +72,12 @@ const BouquetConstructor = ({
 
           <Button 
             onClick={onGenerate} 
-            disabled={selectedFlowers.length === 0}
+            disabled={selectedFlowers.length === 0 || isGenerating}
             className="w-full"
             size="lg"
           >
-            <Icon name="Wand2" size={20} className="mr-2" />
-            Сгенерировать букет
+            <Icon name={isGenerating ? "Loader2" : "Wand2"} size={20} className={`mr-2 ${isGenerating ? 'animate-spin' : ''}`} />
+            {isGenerating ? 'Генерирую букет...' : 'Сгенерировать букет'}
           </Button>
         </div>
 

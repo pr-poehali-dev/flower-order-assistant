@@ -16,6 +16,7 @@ const Index = () => {
   const [selectedFlowers, setSelectedFlowers] = useState<number[]>([]);
   const [aiPrompt, setAiPrompt] = useState('');
   const [generatedImage, setGeneratedImage] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
   const [customerData, setCustomerData] = useState({ name: '', phone: '', address: '' });
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
 
@@ -57,9 +58,40 @@ const Index = () => {
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const handleGenerateAI = () => {
+  const handleGenerateAI = async () => {
     if (selectedFlowers.length === 0) return;
-    setGeneratedImage('https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/cfd6b18b-72a0-46fc-9c55-3e4c1fb6551b.jpg');
+    
+    setIsGenerating(true);
+    
+    try {
+      const flowerNames = selectedFlowers.map(id => {
+        const flower = flowers.find(f => f.id === id);
+        return flower?.name || '';
+      }).filter(Boolean);
+      
+      const response = await fetch('https://functions.poehali.dev/cf5ad9d4-6513-44cd-961d-4edcd1b37028', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: aiPrompt,
+          flower_names: flowerNames
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to generate bouquet');
+      }
+      
+      const data = await response.json();
+      setGeneratedImage(data.image_url);
+    } catch (error) {
+      console.error('Error generating bouquet:', error);
+      alert('Не удалось сгенерировать букет. Проверьте настройки API ключа.');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleCheckout = () => {
@@ -149,6 +181,7 @@ const Index = () => {
             onAiPromptChange={setAiPrompt}
             onGenerate={handleGenerateAI}
             generatedImage={generatedImage}
+            isGenerating={isGenerating}
             onAddToCart={addToCart}
             onOpenCart={() => setIsCartOpen(true)}
           />
