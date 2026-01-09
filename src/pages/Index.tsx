@@ -20,10 +20,10 @@ const Index = () => {
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
 
   const flowers: Flower[] = [
-    { id: 1, name: 'Розы красные', price: 150, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/8f79cff6-adab-460c-af6a-c960614d00b1.jpg', available: 50 },
-    { id: 2, name: 'Лаванда', price: 100, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/dd3f26e5-31f3-44e5-8fc3-fbef297b0915.jpg', available: 30 },
-    { id: 3, name: 'Тюльпаны', price: 120, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/cfd6b18b-72a0-46fc-9c55-3e4c1fb6551b.jpg', available: 40 },
-    { id: 4, name: 'Пионы розовые', price: 200, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/8f79cff6-adab-460c-af6a-c960614d00b1.jpg', available: 25 },
+    { id: 1, name: 'Роза красная', price: 150, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/eb0145a3-73e5-41dc-bae7-50dc004598f9.jpg', available: 50 },
+    { id: 2, name: 'Ромашка', price: 100, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/0c497cad-0495-495d-af06-594a0f1ffb5d.jpg', available: 30 },
+    { id: 3, name: 'Тюльпан желтый', price: 120, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/a7fae14a-abcb-4ac7-8f40-26316f1944ca.jpg', available: 40 },
+    { id: 4, name: 'Лилия', price: 200, image: 'https://cdn.poehali.dev/projects/20e9b2da-3dd2-44fd-ab1b-8035bfe9ef49/files/9c868a7b-47e6-4874-98d4-daa675f1f6bf.jpg', available: 25 },
   ];
 
   const bouquets: Bouquet[] = [
