@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Generate bouquet with prompt",
+      "method": "POST",
+      "body": {
+        "prompt": "romantic bouquet for a date",
+        "flower_names": ["roses", "tulips"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "image_url": "string",
+        "prompt": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Generate bouquet without prompt",
+      "method": "POST",
+      "body": {
+        "flower_names": ["lavender", "roses"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "image_url": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
