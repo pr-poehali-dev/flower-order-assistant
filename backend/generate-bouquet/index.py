@@ -52,7 +52,7 @@ def handler(event: dict, context) -> dict:
         if prompt:
             full_prompt += f", style: {prompt}"
         
-        api_key = os.environ.get('FAL_KEY', '')
+        api_key = os.environ.get('AJEPNA9GE1SS323J6E1D', '')
         if not api_key:
             return {
                 'statusCode': 500,
